@@ -75,9 +75,20 @@ export default function AuditQueue() {
   const [search, setSearch] = useState("");
   const [tipoFilter, setTipoFilter] = useState<string>("todos");
   const [especialidadeFilter, setEspecialidadeFilter] = useState<string>("todas");
+  const [unidadeFilter, setUnidadeFilter] = useState<string>("todas");
+  const [statusFilter, setStatusFilter] = useState<string>("todos");
+  const [regionalFilter, setRegionalFilter] = useState<string>("todas");
 
   const especialidades = useMemo(
     () => [...new Set(MOCK_DATA.map((c) => c.especialidade))].sort(),
+    []
+  );
+  const unidades = useMemo(
+    () => [...new Set(MOCK_DATA.map((c) => c.unidade).filter(Boolean) as string[])].sort(),
+    []
+  );
+  const regionais = useMemo(
+    () => [...new Set(MOCK_DATA.map((c) => c.regional))].sort(),
     []
   );
 
@@ -86,6 +97,9 @@ export default function AuditQueue() {
       if (!statusList.includes(c.status)) return false;
       if (tipoFilter !== "todos" && c.tipo !== tipoFilter) return false;
       if (especialidadeFilter !== "todas" && c.especialidade !== especialidadeFilter) return false;
+      if (unidadeFilter !== "todas" && c.unidade !== unidadeFilter) return false;
+      if (statusFilter !== "todos" && c.status !== statusFilter) return false;
+      if (regionalFilter !== "todas" && c.regional !== regionalFilter) return false;
       if (search) {
         const q = search.toLowerCase();
         return (

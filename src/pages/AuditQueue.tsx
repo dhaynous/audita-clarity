@@ -335,11 +335,29 @@ function ConsultaTable({
                     {c.duracao}
                   </div>
                 </TableCell>
-                <TableCell>
-                  <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_COLORS[c.status]}`}>
-                    {STATUS_LABELS[c.status]}
-                  </span>
-                </TableCell>
+                {showAuditor && (
+                  <TableCell className="text-sm">
+                    {c.auditor ? (
+                      <div className="flex items-center gap-1.5">
+                        <User className="h-3.5 w-3.5 text-muted-foreground" />
+                        {c.auditor}
+                      </div>
+                    ) : <span className="text-muted-foreground">—</span>}
+                  </TableCell>
+                )}
+                {showAuditor && (
+                  <TableCell>
+                    {c.dataAuditoria ? (
+                      <div className="flex items-center gap-1.5 text-sm">
+                        <CalendarDays className="h-3.5 w-3.5 text-muted-foreground" />
+                        <div>
+                          <div>{new Date(c.dataAuditoria + "T12:00:00").toLocaleDateString("pt-BR")}</div>
+                          <div className="text-xs text-muted-foreground">{c.horarioAuditoria}</div>
+                        </div>
+                      </div>
+                    ) : <span className="text-muted-foreground">—</span>}
+                  </TableCell>
+                )}
                 <TableCell>
                   {showAction ? (
                     <Button size="sm" variant="default" className="h-7 text-xs gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

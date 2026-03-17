@@ -125,7 +125,7 @@ export default function AuditQueue() {
         <div className="max-w-[1800px] mx-auto flex items-center justify-between">
           <div>
             <h1 className="text-xl font-bold text-foreground tracking-tight">
-              Fila de Auditoria Médica
+              Auditoria Médica STT
             </h1>
             <p className="text-sm text-muted-foreground mt-0.5">
               Selecione um atendimento para iniciar a auditoria

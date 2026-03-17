@@ -26,6 +26,7 @@ interface Consulta {
   especialidade: string;
   medico: string;
   unidade: string | null;
+  regional: string;
   data: string;
   horario: string;
   duracao: string;

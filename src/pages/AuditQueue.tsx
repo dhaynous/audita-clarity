@@ -201,17 +201,6 @@ export default function AuditQueue() {
                   ))}
                 </SelectContent>
               </Select>
-              <Select value={regionalFilter} onValueChange={setRegionalFilter}>
-                <SelectTrigger className="w-[180px] h-9">
-                  <SelectValue placeholder="Regional" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="todas">Todas regionais</SelectItem>
-                  {regionais.map((r) => (
-                    <SelectItem key={r} value={r}>{r}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
             </div>
           </CardContent>
         </Card>

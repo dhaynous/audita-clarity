@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 import AuditHeader from "@/components/audit/AuditHeader";
 import AudioPlayer from "@/components/audit/AudioPlayer";
 import AnamnesisComparison from "@/components/audit/AnamnesisComparison";
@@ -13,6 +16,8 @@ type Answer = "sim" | "parcial" | "nao" | null;
 type AuditStatus = "pendente" | "em_analise" | "em_revisao" | "finalizada" | "nao_auditavel";
 
 export default function Index() {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [status, setStatus] = useState<AuditStatus>("pendente");
   const [statusJustificativa, setStatusJustificativa] = useState("");
   const [isFinalized, setIsFinalized] = useState(false);
@@ -83,6 +88,13 @@ export default function Index() {
 
   return (
     <div className="min-h-screen pb-16">
+      {/* Back button */}
+      <div className="px-4 pt-3">
+        <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground" onClick={() => navigate("/")}>
+          <ArrowLeft className="h-4 w-4" />
+          Voltar à fila
+        </Button>
+      </div>
       {/* Block 1 – Header */}
       <AuditHeader
         status={status}

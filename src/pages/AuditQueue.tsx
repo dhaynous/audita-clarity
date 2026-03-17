@@ -183,6 +183,39 @@ export default function AuditQueue() {
                   ))}
                 </SelectContent>
               </Select>
+              <Select value={unidadeFilter} onValueChange={setUnidadeFilter}>
+                <SelectTrigger className="w-[200px] h-9">
+                  <SelectValue placeholder="Unidade hospitalar" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="todas">Todas unidades</SelectItem>
+                  {unidades.map((u) => (
+                    <SelectItem key={u} value={u}>{u}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <SelectTrigger className="w-[180px] h-9">
+                  <SelectValue placeholder="Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="todos">Todos os status</SelectItem>
+                  {Object.entries(STATUS_LABELS).map(([key, label]) => (
+                    <SelectItem key={key} value={key}>{label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select value={regionalFilter} onValueChange={setRegionalFilter}>
+                <SelectTrigger className="w-[180px] h-9">
+                  <SelectValue placeholder="Regional" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="todas">Todas regionais</SelectItem>
+                  {regionais.map((r) => (
+                    <SelectItem key={r} value={r}>{r}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </CardContent>
         </Card>

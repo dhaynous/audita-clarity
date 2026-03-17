@@ -77,7 +77,7 @@ export default function AuditQueue() {
   const [especialidadeFilter, setEspecialidadeFilter] = useState<string>("todas");
   const [unidadeFilter, setUnidadeFilter] = useState<string>("todas");
   const [statusFilter, setStatusFilter] = useState<string>("todos");
-  const [regionalFilter, setRegionalFilter] = useState<string>("todas");
+  
 
   const especialidades = useMemo(
     () => [...new Set(MOCK_DATA.map((c) => c.especialidade))].sort(),
@@ -85,10 +85,6 @@ export default function AuditQueue() {
   );
   const unidades = useMemo(
     () => [...new Set(MOCK_DATA.map((c) => c.unidade).filter(Boolean) as string[])].sort(),
-    []
-  );
-  const regionais = useMemo(
-    () => [...new Set(MOCK_DATA.map((c) => c.regional))].sort(),
     []
   );
 
@@ -99,7 +95,7 @@ export default function AuditQueue() {
       if (especialidadeFilter !== "todas" && c.especialidade !== especialidadeFilter) return false;
       if (unidadeFilter !== "todas" && c.unidade !== unidadeFilter) return false;
       if (statusFilter !== "todos" && c.status !== statusFilter) return false;
-      if (regionalFilter !== "todas" && c.regional !== regionalFilter) return false;
+      
       if (search) {
         const q = search.toLowerCase();
         return (
@@ -202,17 +198,6 @@ export default function AuditQueue() {
                   <SelectItem value="todos">Todos os status</SelectItem>
                   {Object.entries(STATUS_LABELS).map(([key, label]) => (
                     <SelectItem key={key} value={key}>{label}</SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <Select value={regionalFilter} onValueChange={setRegionalFilter}>
-                <SelectTrigger className="w-[180px] h-9">
-                  <SelectValue placeholder="Regional" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="todas">Todas regionais</SelectItem>
-                  {regionais.map((r) => (
-                    <SelectItem key={r} value={r}>{r}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>

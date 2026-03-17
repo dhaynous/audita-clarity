@@ -242,10 +242,12 @@ function ConsultaTable({
   consultas,
   onSelect,
   showAction = false,
+  showAuditor = false,
 }: {
   consultas: Consulta[];
   onSelect: (id: string) => void;
   showAction?: boolean;
+  showAuditor?: boolean;
 }) {
   if (consultas.length === 0) {
     return (

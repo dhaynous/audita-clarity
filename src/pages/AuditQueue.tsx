@@ -31,6 +31,9 @@ interface Consulta {
   horario: string;
   duracao: string;
   status: AuditStatus;
+  auditor?: string;
+  dataAuditoria?: string;
+  horarioAuditoria?: string;
 }
 
 const MOCK_DATA: Consulta[] = [

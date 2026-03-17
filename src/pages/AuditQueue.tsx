@@ -87,10 +87,6 @@ export default function AuditQueue() {
     () => [...new Set(MOCK_DATA.map((c) => c.unidade).filter(Boolean) as string[])].sort(),
     []
   );
-  const regionais = useMemo(
-    () => [...new Set(MOCK_DATA.map((c) => c.regional))].sort(),
-    []
-  );
 
   const filterConsultas = (statusList: AuditStatus[]) => {
     return MOCK_DATA.filter((c) => {

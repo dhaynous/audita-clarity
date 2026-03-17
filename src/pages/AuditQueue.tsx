@@ -274,6 +274,8 @@ function ConsultaTable({
               <TableHead>Data / Hora</TableHead>
               <TableHead>Duração</TableHead>
               <TableHead>Status</TableHead>
+              {showAuditor && <TableHead>Auditor</TableHead>}
+              {showAuditor && <TableHead>Data Auditoria</TableHead>}
               <TableHead className="w-[100px]" />
             </TableRow>
           </TableHeader>

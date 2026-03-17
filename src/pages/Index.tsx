@@ -43,7 +43,11 @@ export default function Index() {
   const [hasHallucination, setHasHallucination] = useState<boolean | null>(null);
   const [hallucinationTypes, setHallucinationTypes] = useState<string[]>([]);
 
-  const showCIDBlock = true; // Telemedicina = sem AutoCID
+  // Mock: tipo de atendimento baseado no ID (em produção virá do backend)
+  // PA (pronto atendimento) = CID desabilitado pois já possui AutoCID
+  const tipoAtendimento = id?.includes("00143") || id?.includes("00147") || id?.includes("00131") || id?.includes("00144")
+    ? "pa" : "eletivo";
+  const showCIDBlock = tipoAtendimento !== "pa";
 
   const toggleCID = (idx: number, val: boolean) => {
     setCids(cids.map((c, i) => (i === idx ? { ...c, correct: val } : c)));

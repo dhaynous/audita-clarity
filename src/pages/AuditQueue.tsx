@@ -217,10 +217,10 @@ export default function AuditQueue() {
                 {pendentes.length}
               </Badge>
             </TabsTrigger>
-            <TabsTrigger value="outros" className="gap-1.5">
-              Em andamento / Finalizadas
+            <TabsTrigger value="concluidas" className="gap-1.5">
+              Concluídas / Não Auditáveis
               <Badge variant="secondary" className="ml-1 text-xs h-5 px-1.5 rounded-full">
-                {outros.length}
+                {concluidas.length}
               </Badge>
             </TabsTrigger>
           </TabsList>
@@ -229,8 +229,8 @@ export default function AuditQueue() {
             <ConsultaTable consultas={pendentes} onSelect={handleSelect} showAction />
           </TabsContent>
 
-          <TabsContent value="outros">
-            <ConsultaTable consultas={outros} onSelect={handleSelect} />
+          <TabsContent value="concluidas">
+            <ConsultaTable consultas={concluidas} onSelect={handleSelect} showAuditor />
           </TabsContent>
         </Tabs>
       </div>

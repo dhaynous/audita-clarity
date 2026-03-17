@@ -95,7 +95,7 @@ export default function AuditQueue() {
       if (especialidadeFilter !== "todas" && c.especialidade !== especialidadeFilter) return false;
       if (unidadeFilter !== "todas" && c.unidade !== unidadeFilter) return false;
       if (statusFilter !== "todos" && c.status !== statusFilter) return false;
-      if (regionalFilter !== "todas" && c.regional !== regionalFilter) return false;
+      
       if (search) {
         const q = search.toLowerCase();
         return (

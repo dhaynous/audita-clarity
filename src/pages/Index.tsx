@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 import AuditHeader from "@/components/audit/AuditHeader";
 import AudioPlayer from "@/components/audit/AudioPlayer";
 import AnamnesisComparison from "@/components/audit/AnamnesisComparison";

@@ -16,6 +16,8 @@ type Answer = "sim" | "parcial" | "nao" | null;
 type AuditStatus = "pendente" | "em_analise" | "em_revisao" | "finalizada" | "nao_auditavel";
 
 export default function Index() {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [status, setStatus] = useState<AuditStatus>("pendente");
   const [statusJustificativa, setStatusJustificativa] = useState("");
   const [isFinalized, setIsFinalized] = useState(false);

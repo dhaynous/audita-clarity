@@ -111,8 +111,8 @@ export default function AuditQueue() {
     });
   };
 
-  const pendentes = filterConsultas(["pendente"]);
-  const outros = filterConsultas(["em_analise", "em_revisao", "finalizada", "nao_auditavel"]);
+  const pendentes = filterConsultas(["pendente", "em_analise", "em_revisao"]);
+  const concluidas = filterConsultas(["finalizada", "nao_auditavel"]);
 
   const handleSelect = (id: string) => {
     navigate(`/auditoria/${id}`);

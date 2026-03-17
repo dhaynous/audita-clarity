@@ -31,6 +31,9 @@ interface Consulta {
   horario: string;
   duracao: string;
   status: AuditStatus;
+  auditor?: string;
+  dataAuditoria?: string;
+  horarioAuditoria?: string;
 }
 
 const MOCK_DATA: Consulta[] = [
@@ -42,9 +45,9 @@ const MOCK_DATA: Consulta[] = [
   { id: "ATD-2026-00147", carteirinha: "0043219876", paciente: "Lucas Gabriel Ferreira", tipo: "presencial_pa", especialidade: "Neurologia", medico: "Dra. Camila Torres", unidade: "Hospital São Lucas", regional: "São Paulo", data: "2026-03-14", horario: "16:45", duracao: "00:20:00", status: "pendente" },
   { id: "ATD-2026-00130", carteirinha: "0098765432", paciente: "Patricia Mendes Alves", tipo: "telemedicina_eletivo", especialidade: "Psiquiatria", medico: "Dr. Bruno Lima", unidade: null, regional: "Recife", data: "2026-03-13", horario: "08:00", duracao: "00:30:15", status: "em_analise" },
   { id: "ATD-2026-00131", carteirinha: "0087654321", paciente: "Roberto Carlos Silva", tipo: "presencial_pa", especialidade: "Clínica Geral", medico: "Dra. Julia Santos", unidade: "UPA Centro", regional: "Fortaleza", data: "2026-03-13", horario: "11:20", duracao: "00:14:50", status: "em_revisao" },
-  { id: "ATD-2026-00120", carteirinha: "0076543219", paciente: "Mariana Dias Costa", tipo: "telemedicina_pa", especialidade: "Endocrinologia", medico: "Dr. André Oliveira", unidade: null, regional: "Salvador", data: "2026-03-12", horario: "09:45", duracao: "00:19:30", status: "finalizada" },
-  { id: "ATD-2026-00121", carteirinha: "0065432187", paciente: "Eduardo Nunes Pinto", tipo: "presencial_eletivo", especialidade: "Ortopedia", medico: "Dra. Renata Farias", unidade: "Hospital Central", regional: "São Paulo", data: "2026-03-12", horario: "13:00", duracao: "00:16:20", status: "finalizada" },
-  { id: "ATD-2026-00110", carteirinha: "0054321876", paciente: "Juliana Martins Ramos", tipo: "telemedicina_eletivo", especialidade: "Ginecologia", medico: "Dr. Marcos Vieira", unidade: null, regional: "Fortaleza", data: "2026-03-11", horario: "10:30", duracao: "00:21:00", status: "nao_auditavel" },
+  { id: "ATD-2026-00120", carteirinha: "0076543219", paciente: "Mariana Dias Costa", tipo: "telemedicina_pa", especialidade: "Endocrinologia", medico: "Dr. André Oliveira", unidade: null, regional: "Salvador", data: "2026-03-12", horario: "09:45", duracao: "00:19:30", status: "finalizada", auditor: "Dra. Fernanda Lima", dataAuditoria: "2026-03-13", horarioAuditoria: "10:30" },
+  { id: "ATD-2026-00121", carteirinha: "0065432187", paciente: "Eduardo Nunes Pinto", tipo: "presencial_eletivo", especialidade: "Ortopedia", medico: "Dra. Renata Farias", unidade: "Hospital Central", regional: "São Paulo", data: "2026-03-12", horario: "13:00", duracao: "00:16:20", status: "finalizada", auditor: "Dr. Paulo Henrique", dataAuditoria: "2026-03-13", horarioAuditoria: "15:45" },
+  { id: "ATD-2026-00110", carteirinha: "0054321876", paciente: "Juliana Martins Ramos", tipo: "telemedicina_eletivo", especialidade: "Ginecologia", medico: "Dr. Marcos Vieira", unidade: null, regional: "Fortaleza", data: "2026-03-11", horario: "10:30", duracao: "00:21:00", status: "nao_auditavel", auditor: "Dra. Fernanda Lima", dataAuditoria: "2026-03-12", horarioAuditoria: "09:00" },
 ];
 
 const TIPO_LABELS: Record<TipoAtendimento, string> = {
@@ -108,8 +111,8 @@ export default function AuditQueue() {
     });
   };
 
-  const pendentes = filterConsultas(["pendente"]);
-  const outros = filterConsultas(["em_analise", "em_revisao", "finalizada", "nao_auditavel"]);
+  const pendentes = filterConsultas(["pendente", "em_analise", "em_revisao"]);
+  const concluidas = filterConsultas(["finalizada", "nao_auditavel"]);
 
   const handleSelect = (id: string) => {
     navigate(`/auditoria/${id}`);
@@ -214,10 +217,10 @@ export default function AuditQueue() {
                 {pendentes.length}
               </Badge>
             </TabsTrigger>
-            <TabsTrigger value="outros" className="gap-1.5">
-              Em andamento / Finalizadas
+            <TabsTrigger value="concluidas" className="gap-1.5">
+              Concluídas / Não Auditáveis
               <Badge variant="secondary" className="ml-1 text-xs h-5 px-1.5 rounded-full">
-                {outros.length}
+                {concluidas.length}
               </Badge>
             </TabsTrigger>
           </TabsList>
@@ -226,8 +229,8 @@ export default function AuditQueue() {
             <ConsultaTable consultas={pendentes} onSelect={handleSelect} showAction />
           </TabsContent>
 
-          <TabsContent value="outros">
-            <ConsultaTable consultas={outros} onSelect={handleSelect} />
+          <TabsContent value="concluidas">
+            <ConsultaTable consultas={concluidas} onSelect={handleSelect} showAuditor />
           </TabsContent>
         </Tabs>
       </div>
@@ -239,10 +242,12 @@ function ConsultaTable({
   consultas,
   onSelect,
   showAction = false,
+  showAuditor = false,
 }: {
   consultas: Consulta[];
   onSelect: (id: string) => void;
   showAction?: boolean;
+  showAuditor?: boolean;
 }) {
   if (consultas.length === 0) {
     return (
@@ -269,6 +274,8 @@ function ConsultaTable({
               <TableHead>Data / Hora</TableHead>
               <TableHead>Duração</TableHead>
               <TableHead>Status</TableHead>
+              {showAuditor && <TableHead>Auditor</TableHead>}
+              {showAuditor && <TableHead>Data Auditoria</TableHead>}
               <TableHead className="w-[100px]" />
             </TableRow>
           </TableHeader>
@@ -328,11 +335,29 @@ function ConsultaTable({
                     {c.duracao}
                   </div>
                 </TableCell>
-                <TableCell>
-                  <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_COLORS[c.status]}`}>
-                    {STATUS_LABELS[c.status]}
-                  </span>
-                </TableCell>
+                {showAuditor && (
+                  <TableCell className="text-sm">
+                    {c.auditor ? (
+                      <div className="flex items-center gap-1.5">
+                        <User className="h-3.5 w-3.5 text-muted-foreground" />
+                        {c.auditor}
+                      </div>
+                    ) : <span className="text-muted-foreground">—</span>}
+                  </TableCell>
+                )}
+                {showAuditor && (
+                  <TableCell>
+                    {c.dataAuditoria ? (
+                      <div className="flex items-center gap-1.5 text-sm">
+                        <CalendarDays className="h-3.5 w-3.5 text-muted-foreground" />
+                        <div>
+                          <div>{new Date(c.dataAuditoria + "T12:00:00").toLocaleDateString("pt-BR")}</div>
+                          <div className="text-xs text-muted-foreground">{c.horarioAuditoria}</div>
+                        </div>
+                      </div>
+                    ) : <span className="text-muted-foreground">—</span>}
+                  </TableCell>
+                )}
                 <TableCell>
                   {showAction ? (
                     <Button size="sm" variant="default" className="h-7 text-xs gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

@@ -88,6 +88,13 @@ export default function Index() {
 
   return (
     <div className="min-h-screen pb-16">
+      {/* Back button */}
+      <div className="px-4 pt-3">
+        <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground" onClick={() => navigate("/")}>
+          <ArrowLeft className="h-4 w-4" />
+          Voltar à fila
+        </Button>
+      </div>
       {/* Block 1 – Header */}
       <AuditHeader
         status={status}

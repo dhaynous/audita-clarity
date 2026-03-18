@@ -62,6 +62,12 @@ export default {
           DEFAULT: "hsl(var(--danger))",
           foreground: "hsl(var(--danger-foreground))",
         },
+        hapvida: {
+          blue: "hsl(var(--primary))",
+          yellow: "hsl(var(--hapvida-yellow))",
+          orange: "hsl(var(--hapvida-orange))",
+          red: "hsl(var(--hapvida-red))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

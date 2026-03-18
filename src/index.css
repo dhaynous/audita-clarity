@@ -6,26 +6,27 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 215 28% 17%;
+    /* Hapvida Brand Palette */
+    --background: 40 33% 96%;
+    --foreground: 222 47% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 28% 17%;
+    --card-foreground: 222 47% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 17%;
+    --popover-foreground: 222 47% 20%;
 
-    --primary: 201 94% 39%;
+    --primary: 222 84% 31%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 215 28% 17%;
+    --secondary: 40 33% 93%;
+    --secondary-foreground: 222 47% 20%;
 
-    --muted: 210 20% 94%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 14% 92%;
+    --muted-foreground: 222 12% 48%;
 
-    --accent: 210 40% 96%;
-    --accent-foreground: 215 28% 17%;
+    --accent: 40 33% 93%;
+    --accent-foreground: 222 47% 20%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -33,30 +34,34 @@
     --success: 160 84% 39%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    --warning: 42 90% 58%;
+    --warning-foreground: 222 47% 20%;
 
     --danger: 0 84% 60%;
     --danger-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 201 94% 39%;
+    --hapvida-yellow: 42 90% 58%;
+    --hapvida-orange: 24 95% 50%;
+    --hapvida-red: 4 82% 56%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 222 84% 31%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 222 84% 31%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 222 84% 31%;
+    --sidebar-accent: 222 70% 38%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 222 70% 38%;
+    --sidebar-ring: 42 90% 58%;
 
     /* Status badge tokens */
-    --status-pending: 38 92% 50%;
-    --status-analyzing: 201 94% 39%;
+    --status-pending: 42 90% 58%;
+    --status-analyzing: 222 84% 31%;
     --status-review: 262 83% 58%;
     --status-done: 160 84% 39%;
     --status-not-auditable: 0 84% 60%;

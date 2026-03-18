@@ -11,6 +11,7 @@ import CIDBlock from "@/components/audit/CIDBlock";
 import HallucinationBlock from "@/components/audit/HallucinationBlock";
 import AuditFooter from "@/components/audit/AuditFooter";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import hapvidaLogo from "@/assets/hapvida-logo.png";
 
 type Answer = "sim" | "parcial" | "nao" | null;
 type AuditStatus = "pendente" | "em_analise" | "em_revisao" | "finalizada" | "nao_auditavel";
@@ -92,9 +93,14 @@ export default function Index() {
 
   return (
     <div className="min-h-screen pb-16">
-      {/* Back button */}
-      <div className="px-4 pt-3">
-        <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground" onClick={() => navigate("/")}>
+      {/* Top bar */}
+      <div className="bg-primary px-4 py-2 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <img src={hapvidaLogo} alt="Hapvida" className="h-8" />
+          <div className="h-6 w-px bg-primary-foreground/20" />
+          <span className="text-sm font-semibold text-primary-foreground">Auditoria Médica STT</span>
+        </div>
+        <Button variant="ghost" size="sm" className="gap-1.5 text-primary-foreground/80 hover:text-primary-foreground hover:bg-primary-foreground/10" onClick={() => navigate("/")}>
           <ArrowLeft className="h-4 w-4" />
           Voltar à fila
         </Button>

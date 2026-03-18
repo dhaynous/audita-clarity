@@ -166,7 +166,7 @@ export default function AuditQueue() {
               </div>
               <Select value={tipoFilter} onValueChange={setTipoFilter}>
                 <SelectTrigger className="w-[200px] h-9">
-                  <SelectValue placeholder="Tipo de atendimento" />
+                  <SelectValue placeholder="Tipos de Atendimentos" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="todos">Todos os tipos</SelectItem>

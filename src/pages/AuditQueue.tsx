@@ -169,7 +169,7 @@ export default function AuditQueue() {
                   <SelectValue placeholder="Tipos de Atendimentos" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="todos">Todos os tipos</SelectItem>
+                  <SelectItem value="todos">Tipos de Atendimento</SelectItem>
                   <SelectItem value="telemedicina_eletivo">Telemed – Eletivo</SelectItem>
                   <SelectItem value="telemedicina_pa">Telemed – PA</SelectItem>
                   <SelectItem value="presencial_eletivo">Presencial – Eletivo</SelectItem>

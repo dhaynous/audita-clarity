@@ -93,6 +93,10 @@ export default function AuditQueue() {
     () => [...new Set(MOCK_DATA.map((c) => c.unidade).filter(Boolean) as string[])].sort(),
     []
   );
+  const setores = useMemo(
+    () => [...new Set(MOCK_DATA.map((c) => c.setor).filter(Boolean) as string[])].sort(),
+    []
+  );
 
   const filterConsultas = (statusList: AuditStatus[]) => {
     return MOCK_DATA.filter((c) => {

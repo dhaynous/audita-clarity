@@ -122,18 +122,22 @@ export default function AuditQueue() {
   return (
     <div className="min-h-screen bg-background">
       {/* Top bar */}
-      <header className="border-b bg-card px-6 py-4">
+      <header className="border-b bg-primary px-6 py-3">
         <div className="max-w-[1800px] mx-auto flex items-center justify-between">
-          <div>
-            <h1 className="text-xl font-bold text-foreground tracking-tight">
-              Auditoria Médica STT
-            </h1>
-            <p className="text-sm text-muted-foreground mt-0.5">
-              Selecione um atendimento para iniciar a auditoria
-            </p>
+          <div className="flex items-center gap-4">
+            <img src={hapvidaLogo} alt="Hapvida" className="h-10" />
+            <div className="h-8 w-px bg-primary-foreground/20" />
+            <div>
+              <h1 className="text-lg font-bold text-primary-foreground tracking-tight">
+                Auditoria Médica STT
+              </h1>
+              <p className="text-xs text-primary-foreground/70 mt-0.5">
+                Selecione um atendimento para iniciar a auditoria
+              </p>
+            </div>
           </div>
-          <div className="flex items-center gap-3 text-sm text-muted-foreground">
-            <div className="flex items-center gap-1.5 bg-muted px-3 py-1.5 rounded-md">
+          <div className="flex items-center gap-3 text-sm text-primary-foreground/80">
+            <div className="flex items-center gap-1.5 bg-primary-foreground/10 px-3 py-1.5 rounded-md">
               <Clock className="h-3.5 w-3.5" />
               <span className="font-medium">{pendentes.length}</span>
               <span>pendentes</span>

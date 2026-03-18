@@ -14,6 +14,7 @@ import {
 import {
   Search, Filter, Clock, User, Stethoscope, Building2, CalendarDays, ArrowRight,
 } from "lucide-react";
+import hapvidaLogo from "@/assets/hapvida-logo.png";
 
 type AuditStatus = "pendente" | "em_analise" | "em_revisao" | "finalizada" | "nao_auditavel";
 type TipoAtendimento = "telemedicina_eletivo" | "telemedicina_pa" | "presencial_eletivo" | "presencial_pa";

@@ -27,6 +27,7 @@ interface Consulta {
   especialidade: string;
   medico: string;
   unidade: string | null;
+  setor: string | null;
   regional: string;
   data: string;
   horario: string;
@@ -38,17 +39,17 @@ interface Consulta {
 }
 
 const MOCK_DATA: Consulta[] = [
-  { id: "ATD-2026-00142", carteirinha: "0087456321", paciente: "Maria Silva Santos", tipo: "telemedicina_eletivo", especialidade: "Clínica Geral", medico: "Dr. João Almeida", unidade: null, regional: "Fortaleza", data: "2026-03-15", horario: "08:30", duracao: "00:18:42", status: "pendente" },
-  { id: "ATD-2026-00143", carteirinha: "0091234567", paciente: "Carlos Eduardo Lima", tipo: "presencial_pa", especialidade: "Ortopedia", medico: "Dra. Ana Beatriz", unidade: "Hospital São Lucas", regional: "São Paulo", data: "2026-03-15", horario: "09:15", duracao: "00:12:05", status: "pendente" },
-  { id: "ATD-2026-00144", carteirinha: "0076543210", paciente: "Fernanda Costa Oliveira", tipo: "telemedicina_pa", especialidade: "Pediatria", medico: "Dr. Ricardo Mendes", unidade: null, regional: "Recife", data: "2026-03-15", horario: "10:00", duracao: "00:22:30", status: "pendente" },
-  { id: "ATD-2026-00145", carteirinha: "0065432198", paciente: "José Roberto Pereira", tipo: "presencial_eletivo", especialidade: "Cardiologia", medico: "Dra. Mariana Souza", unidade: "Hospital Central", regional: "Fortaleza", data: "2026-03-14", horario: "14:00", duracao: "00:25:10", status: "pendente" },
-  { id: "ATD-2026-00146", carteirinha: "0054321987", paciente: "Ana Paula Rodrigues", tipo: "telemedicina_eletivo", especialidade: "Dermatologia", medico: "Dr. Felipe Castro", unidade: null, regional: "Salvador", data: "2026-03-14", horario: "15:30", duracao: "00:15:45", status: "pendente" },
-  { id: "ATD-2026-00147", carteirinha: "0043219876", paciente: "Lucas Gabriel Ferreira", tipo: "presencial_pa", especialidade: "Neurologia", medico: "Dra. Camila Torres", unidade: "Hospital São Lucas", regional: "São Paulo", data: "2026-03-14", horario: "16:45", duracao: "00:20:00", status: "pendente" },
-  { id: "ATD-2026-00130", carteirinha: "0098765432", paciente: "Patricia Mendes Alves", tipo: "telemedicina_eletivo", especialidade: "Psiquiatria", medico: "Dr. Bruno Lima", unidade: null, regional: "Recife", data: "2026-03-13", horario: "08:00", duracao: "00:30:15", status: "em_analise" },
-  { id: "ATD-2026-00131", carteirinha: "0087654321", paciente: "Roberto Carlos Silva", tipo: "presencial_pa", especialidade: "Clínica Geral", medico: "Dra. Julia Santos", unidade: "UPA Centro", regional: "Fortaleza", data: "2026-03-13", horario: "11:20", duracao: "00:14:50", status: "em_revisao" },
-  { id: "ATD-2026-00120", carteirinha: "0076543219", paciente: "Mariana Dias Costa", tipo: "telemedicina_pa", especialidade: "Endocrinologia", medico: "Dr. André Oliveira", unidade: null, regional: "Salvador", data: "2026-03-12", horario: "09:45", duracao: "00:19:30", status: "finalizada", auditor: "Dra. Fernanda Lima", dataAuditoria: "2026-03-13", horarioAuditoria: "10:30" },
-  { id: "ATD-2026-00121", carteirinha: "0065432187", paciente: "Eduardo Nunes Pinto", tipo: "presencial_eletivo", especialidade: "Ortopedia", medico: "Dra. Renata Farias", unidade: "Hospital Central", regional: "São Paulo", data: "2026-03-12", horario: "13:00", duracao: "00:16:20", status: "finalizada", auditor: "Dr. Paulo Henrique", dataAuditoria: "2026-03-13", horarioAuditoria: "15:45" },
-  { id: "ATD-2026-00110", carteirinha: "0054321876", paciente: "Juliana Martins Ramos", tipo: "telemedicina_eletivo", especialidade: "Ginecologia", medico: "Dr. Marcos Vieira", unidade: null, regional: "Fortaleza", data: "2026-03-11", horario: "10:30", duracao: "00:21:00", status: "nao_auditavel", auditor: "Dra. Fernanda Lima", dataAuditoria: "2026-03-12", horarioAuditoria: "09:00" },
+  { id: "ATD-2026-00142", carteirinha: "0087456321", paciente: "Maria Silva Santos", tipo: "telemedicina_eletivo", especialidade: "Clínica Geral", medico: "Dr. João Almeida", unidade: null, setor: null, regional: "Fortaleza", data: "2026-03-15", horario: "08:30", duracao: "00:18:42", status: "pendente" },
+  { id: "ATD-2026-00143", carteirinha: "0091234567", paciente: "Carlos Eduardo Lima", tipo: "presencial_pa", especialidade: "Ortopedia", medico: "Dra. Ana Beatriz", unidade: "Hospital São Lucas", setor: "Pronto Atendimento", regional: "São Paulo", data: "2026-03-15", horario: "09:15", duracao: "00:12:05", status: "pendente" },
+  { id: "ATD-2026-00144", carteirinha: "0076543210", paciente: "Fernanda Costa Oliveira", tipo: "telemedicina_pa", especialidade: "Pediatria", medico: "Dr. Ricardo Mendes", unidade: null, setor: null, regional: "Recife", data: "2026-03-15", horario: "10:00", duracao: "00:22:30", status: "pendente" },
+  { id: "ATD-2026-00145", carteirinha: "0065432198", paciente: "José Roberto Pereira", tipo: "presencial_eletivo", especialidade: "Cardiologia", medico: "Dra. Mariana Souza", unidade: "Hospital Central", setor: "Ambulatório", regional: "Fortaleza", data: "2026-03-14", horario: "14:00", duracao: "00:25:10", status: "pendente" },
+  { id: "ATD-2026-00146", carteirinha: "0054321987", paciente: "Ana Paula Rodrigues", tipo: "telemedicina_eletivo", especialidade: "Dermatologia", medico: "Dr. Felipe Castro", unidade: null, setor: null, regional: "Salvador", data: "2026-03-14", horario: "15:30", duracao: "00:15:45", status: "pendente" },
+  { id: "ATD-2026-00147", carteirinha: "0043219876", paciente: "Lucas Gabriel Ferreira", tipo: "presencial_pa", especialidade: "Neurologia", medico: "Dra. Camila Torres", unidade: "Hospital São Lucas", setor: "Emergência", regional: "São Paulo", data: "2026-03-14", horario: "16:45", duracao: "00:20:00", status: "pendente" },
+  { id: "ATD-2026-00130", carteirinha: "0098765432", paciente: "Patricia Mendes Alves", tipo: "telemedicina_eletivo", especialidade: "Psiquiatria", medico: "Dr. Bruno Lima", unidade: null, setor: null, regional: "Recife", data: "2026-03-13", horario: "08:00", duracao: "00:30:15", status: "em_analise" },
+  { id: "ATD-2026-00131", carteirinha: "0087654321", paciente: "Roberto Carlos Silva", tipo: "presencial_pa", especialidade: "Clínica Geral", medico: "Dra. Julia Santos", unidade: "UPA Centro", setor: "Pronto Atendimento", regional: "Fortaleza", data: "2026-03-13", horario: "11:20", duracao: "00:14:50", status: "em_revisao" },
+  { id: "ATD-2026-00120", carteirinha: "0076543219", paciente: "Mariana Dias Costa", tipo: "telemedicina_pa", especialidade: "Endocrinologia", medico: "Dr. André Oliveira", unidade: null, setor: null, regional: "Salvador", data: "2026-03-12", horario: "09:45", duracao: "00:19:30", status: "finalizada", auditor: "Dra. Fernanda Lima", dataAuditoria: "2026-03-13", horarioAuditoria: "10:30" },
+  { id: "ATD-2026-00121", carteirinha: "0065432187", paciente: "Eduardo Nunes Pinto", tipo: "presencial_eletivo", especialidade: "Ortopedia", medico: "Dra. Renata Farias", unidade: "Hospital Central", setor: "Centro Cirúrgico", regional: "São Paulo", data: "2026-03-12", horario: "13:00", duracao: "00:16:20", status: "finalizada", auditor: "Dr. Paulo Henrique", dataAuditoria: "2026-03-13", horarioAuditoria: "15:45" },
+  { id: "ATD-2026-00110", carteirinha: "0054321876", paciente: "Juliana Martins Ramos", tipo: "telemedicina_eletivo", especialidade: "Ginecologia", medico: "Dr. Marcos Vieira", unidade: null, setor: null, regional: "Fortaleza", data: "2026-03-11", horario: "10:30", duracao: "00:21:00", status: "nao_auditavel", auditor: "Dra. Fernanda Lima", dataAuditoria: "2026-03-12", horarioAuditoria: "09:00" },
 ];
 
 const TIPO_LABELS: Record<TipoAtendimento, string> = {
@@ -81,7 +82,8 @@ export default function AuditQueue() {
   const [especialidadeFilter, setEspecialidadeFilter] = useState<string>("todas");
   const [unidadeFilter, setUnidadeFilter] = useState<string>("todas");
   const [statusFilter, setStatusFilter] = useState<string>("todos");
-  
+  const [setorFilter, setSetorFilter] = useState<string>("todos");
+
 
   const especialidades = useMemo(
     () => [...new Set(MOCK_DATA.map((c) => c.especialidade))].sort(),
@@ -91,6 +93,10 @@ export default function AuditQueue() {
     () => [...new Set(MOCK_DATA.map((c) => c.unidade).filter(Boolean) as string[])].sort(),
     []
   );
+  const setores = useMemo(
+    () => [...new Set(MOCK_DATA.map((c) => c.setor).filter(Boolean) as string[])].sort(),
+    []
+  );
 
   const filterConsultas = (statusList: AuditStatus[]) => {
     return MOCK_DATA.filter((c) => {
@@ -98,6 +104,7 @@ export default function AuditQueue() {
       if (tipoFilter !== "todos" && c.tipo !== tipoFilter) return false;
       if (especialidadeFilter !== "todas" && c.especialidade !== especialidadeFilter) return false;
       if (unidadeFilter !== "todas" && c.unidade !== unidadeFilter) return false;
+      if (setorFilter !== "todos" && c.setor !== setorFilter) return false;
       if (statusFilter !== "todos" && c.status !== statusFilter) return false;
       
       if (search) {
@@ -195,6 +202,17 @@ export default function AuditQueue() {
                   <SelectItem value="todas">Todas unidades</SelectItem>
                   {unidades.map((u) => (
                     <SelectItem key={u} value={u}>{u}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select value={setorFilter} onValueChange={setSetorFilter}>
+                <SelectTrigger className="w-[200px] h-9">
+                  <SelectValue placeholder="Setor" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="todos">Todos os setores</SelectItem>
+                  {setores.map((s) => (
+                    <SelectItem key={s} value={s}>{s}</SelectItem>
                   ))}
                 </SelectContent>
               </Select>

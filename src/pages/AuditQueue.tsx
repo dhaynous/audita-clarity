@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -368,6 +369,11 @@ function ConsultaTable({
                     <Clock className="h-3.5 w-3.5 text-muted-foreground" />
                     {c.duracao}
                   </div>
+                </TableCell>
+                <TableCell>
+                  <Badge className={cn("text-xs font-medium", STATUS_COLORS[c.status])}>
+                    {STATUS_LABELS[c.status]}
+                  </Badge>
                 </TableCell>
                 {showAuditor && (
                   <TableCell className="text-sm">

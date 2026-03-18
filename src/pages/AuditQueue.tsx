@@ -205,6 +205,17 @@ export default function AuditQueue() {
                   ))}
                 </SelectContent>
               </Select>
+              <Select value={setorFilter} onValueChange={setSetorFilter}>
+                <SelectTrigger className="w-[200px] h-9">
+                  <SelectValue placeholder="Setor" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="todos">Todos os setores</SelectItem>
+                  {setores.map((s) => (
+                    <SelectItem key={s} value={s}>{s}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger className="w-[180px] h-9">
                   <SelectValue placeholder="Status" />

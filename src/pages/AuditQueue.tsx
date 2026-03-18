@@ -119,7 +119,8 @@ export default function AuditQueue() {
     });
   };
 
-  const pendentes = filterConsultas(["pendente", "em_analise", "em_revisao"]);
+  const pendentes = filterConsultas(["pendente", "em_analise"]);
+  const emRevisao = filterConsultas(["em_revisao"]);
   const concluidas = filterConsultas(["finalizada", "nao_auditavel"]);
 
   const handleSelect = (id: string) => {
@@ -240,6 +241,12 @@ export default function AuditQueue() {
                 {pendentes.length}
               </Badge>
             </TabsTrigger>
+            <TabsTrigger value="em_revisao" className="gap-1.5">
+              Em Revisão
+              <Badge variant="secondary" className="ml-1 text-xs h-5 px-1.5 rounded-full">
+                {emRevisao.length}
+              </Badge>
+            </TabsTrigger>
             <TabsTrigger value="concluidas" className="gap-1.5">
               Concluídas / Não Auditáveis
               <Badge variant="secondary" className="ml-1 text-xs h-5 px-1.5 rounded-full">
@@ -250,6 +257,10 @@ export default function AuditQueue() {
 
           <TabsContent value="pendentes">
             <ConsultaTable consultas={pendentes} onSelect={handleSelect} showAction />
+          </TabsContent>
+
+          <TabsContent value="em_revisao">
+            <ConsultaTable consultas={emRevisao} onSelect={handleSelect} showAction />
           </TabsContent>
 
           <TabsContent value="concluidas">

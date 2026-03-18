@@ -369,6 +369,11 @@ function ConsultaTable({
                     {c.duracao}
                   </div>
                 </TableCell>
+                <TableCell>
+                  <Badge className={cn("text-xs font-medium", STATUS_COLORS[c.status])}>
+                    {STATUS_LABELS[c.status]}
+                  </Badge>
+                </TableCell>
                 {showAuditor && (
                   <TableCell className="text-sm">
                     {c.auditor ? (

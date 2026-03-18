@@ -119,7 +119,8 @@ export default function AuditQueue() {
     });
   };
 
-  const pendentes = filterConsultas(["pendente", "em_analise", "em_revisao"]);
+  const pendentes = filterConsultas(["pendente", "em_analise"]);
+  const emRevisao = filterConsultas(["em_revisao"]);
   const concluidas = filterConsultas(["finalizada", "nao_auditavel"]);
 
   const handleSelect = (id: string) => {

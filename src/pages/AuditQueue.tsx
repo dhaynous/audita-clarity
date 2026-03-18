@@ -82,7 +82,8 @@ export default function AuditQueue() {
   const [especialidadeFilter, setEspecialidadeFilter] = useState<string>("todas");
   const [unidadeFilter, setUnidadeFilter] = useState<string>("todas");
   const [statusFilter, setStatusFilter] = useState<string>("todos");
-  
+  const [setorFilter, setSetorFilter] = useState<string>("todos");
+
 
   const especialidades = useMemo(
     () => [...new Set(MOCK_DATA.map((c) => c.especialidade))].sort(),

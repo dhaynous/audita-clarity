@@ -11,6 +11,7 @@ import CIDBlock from "@/components/audit/CIDBlock";
 import HallucinationBlock from "@/components/audit/HallucinationBlock";
 import AuditFooter from "@/components/audit/AuditFooter";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import hapvidaLogo from "@/assets/hapvida-logo.png";
 
 type Answer = "sim" | "parcial" | "nao" | null;
 type AuditStatus = "pendente" | "em_analise" | "em_revisao" | "finalizada" | "nao_auditavel";

@@ -96,6 +96,21 @@ export default function AuditHeader({ status, onStatusChange, justificativa, onJ
         </div>
       </div>
 
+      {status === "em_revisao" && (
+        <div className="mt-3">
+          <Textarea
+            placeholder="Informe o motivo para envio à revisão (obrigatório, mínimo 15 caracteres)..."
+            value={motivoRevisao}
+            onChange={(e) => onMotivoRevisaoChange(e.target.value)}
+            disabled={isFinalized}
+            className="text-sm min-h-[60px]"
+          />
+          {motivoRevisao.length > 0 && motivoRevisao.length < 15 && (
+            <p className="text-xs text-destructive mt-1">Mínimo de 15 caracteres ({motivoRevisao.length}/15)</p>
+          )}
+        </div>
+      )}
+
       {status === "nao_auditavel" && (
         <div className="mt-3">
           <Textarea

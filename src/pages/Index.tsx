@@ -21,6 +21,7 @@ export default function Index() {
   const { id } = useParams();
   const [status, setStatus] = useState<AuditStatus>("pendente");
   const [statusJustificativa, setStatusJustificativa] = useState("");
+  const [motivoRevisao, setMotivoRevisao] = useState("");
   const [isFinalized, setIsFinalized] = useState(false);
 
   // Block 3 – Evaluations

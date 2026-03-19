@@ -19,6 +19,8 @@ interface AuditHeaderProps {
   onStatusChange: (s: AuditStatus) => void;
   justificativa: string;
   onJustificativaChange: (v: string) => void;
+  motivoRevisao: string;
+  onMotivoRevisaoChange: (v: string) => void;
   isFinalized: boolean;
 }
 

@@ -24,7 +24,7 @@ interface AuditHeaderProps {
   isFinalized: boolean;
 }
 
-export default function AuditHeader({ status, onStatusChange, justificativa, onJustificativaChange, isFinalized }: AuditHeaderProps) {
+export default function AuditHeader({ status, onStatusChange, justificativa, onJustificativaChange, motivoRevisao, onMotivoRevisaoChange, isFinalized }: AuditHeaderProps) {
   const cfg = statusConfig[status];
 
   return (

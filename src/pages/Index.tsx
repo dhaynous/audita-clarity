@@ -112,6 +112,8 @@ export default function Index() {
         onStatusChange={setStatus}
         justificativa={statusJustificativa}
         onJustificativaChange={setStatusJustificativa}
+        motivoRevisao={motivoRevisao}
+        onMotivoRevisaoChange={setMotivoRevisao}
         isFinalized={isFinalized}
       />
 

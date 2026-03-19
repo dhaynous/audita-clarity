@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import { AlertCircle } from "lucide-react";
 
 interface CIDItem {
   code: string;
@@ -22,6 +23,8 @@ interface CIDBlockProps {
 export default function CIDBlock({ cids, onToggle, selectedBest, onSelectBest, manualCID, onManualCIDChange, disabled, visible }: CIDBlockProps) {
   if (!visible) return null;
 
+  const hasCIDs = cids.length > 0;
+
   return (
     <div className="bg-card border border-border rounded-lg p-4">
       <h4 className="text-sm font-semibold mb-3">Avaliação dos CIDs Sugeridos pela IA</h4>
@@ -29,55 +32,72 @@ export default function CIDBlock({ cids, onToggle, selectedBest, onSelectBest, m
         Disponível apenas para atendimentos sem IA AutoCID implementada.
       </p>
 
-      {/* CID validation table */}
-      <div className="space-y-2 mb-4">
-        <div className="grid grid-cols-[1fr_80px_80px_50px] gap-2 text-xs font-semibold text-muted-foreground px-2">
-          <span>CID Sugerido</span>
-          <span className="text-center">Correto?</span>
-          <span className="text-center">Incorreto?</span>
-          <span className="text-center">Ideal</span>
-        </div>
-        {cids.map((cid, idx) => (
-          <div key={idx} className="grid grid-cols-[1fr_80px_80px_50px] gap-2 items-center px-2 py-2 rounded bg-muted/50">
-            <div>
-              <span className="font-mono text-sm font-semibold">{cid.code}</span>
-              <span className="text-xs text-muted-foreground ml-2">{cid.description}</span>
-            </div>
-            <div className="flex justify-center">
-              <button
-                className={`segment-btn text-xs py-1 px-3 ${cid.correct === true ? "segment-btn-yes" : ""}`}
-                onClick={() => !disabled && onToggle(idx, true)}
-                disabled={disabled}
-              >
-                Sim
-              </button>
-            </div>
-            <div className="flex justify-center">
-              <button
-                className={`segment-btn text-xs py-1 px-3 ${cid.correct === false ? "segment-btn-no" : ""}`}
-                onClick={() => !disabled && onToggle(idx, false)}
-                disabled={disabled}
-              >
-                Não
-              </button>
-            </div>
-            <div className="flex justify-center">
-              <input
-                type="radio"
-                name="best-cid"
-                checked={selectedBest === idx}
-                onChange={() => !disabled && onSelectBest(idx)}
-                disabled={disabled}
-                className="h-4 w-4 accent-primary"
-              />
-            </div>
+      {!hasCIDs ? (
+        /* No CID recommendation from AI */
+        <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/50 border border-border mb-4">
+          <AlertCircle className="h-5 w-5 text-muted-foreground shrink-0" />
+          <div>
+            <Badge variant="outline" className="text-xs font-medium mb-1">
+              Sem Recomendação CID
+            </Badge>
+            <p className="text-xs text-muted-foreground">
+              A IA não gerou sugestões de CID para este atendimento. Informe o CID ideal manualmente abaixo.
+            </p>
           </div>
-        ))}
-      </div>
+        </div>
+      ) : (
+        /* CID validation table */
+        <div className="space-y-2 mb-4">
+          <div className="grid grid-cols-[1fr_80px_80px_50px] gap-2 text-xs font-semibold text-muted-foreground px-2">
+            <span>CID Sugerido</span>
+            <span className="text-center">Correto?</span>
+            <span className="text-center">Incorreto?</span>
+            <span className="text-center">Ideal</span>
+          </div>
+          {cids.map((cid, idx) => (
+            <div key={idx} className="grid grid-cols-[1fr_80px_80px_50px] gap-2 items-center px-2 py-2 rounded bg-muted/50">
+              <div>
+                <span className="font-mono text-sm font-semibold">{cid.code}</span>
+                <span className="text-xs text-muted-foreground ml-2">{cid.description}</span>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  className={`segment-btn text-xs py-1 px-3 ${cid.correct === true ? "segment-btn-yes" : ""}`}
+                  onClick={() => !disabled && onToggle(idx, true)}
+                  disabled={disabled}
+                >
+                  Sim
+                </button>
+              </div>
+              <div className="flex justify-center">
+                <button
+                  className={`segment-btn text-xs py-1 px-3 ${cid.correct === false ? "segment-btn-no" : ""}`}
+                  onClick={() => !disabled && onToggle(idx, false)}
+                  disabled={disabled}
+                >
+                  Não
+                </button>
+              </div>
+              <div className="flex justify-center">
+                <input
+                  type="radio"
+                  name="best-cid"
+                  checked={selectedBest === idx}
+                  onChange={() => !disabled && onSelectBest(idx)}
+                  disabled={disabled}
+                  className="h-4 w-4 accent-primary"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Manual CID */}
       <div>
-        <Label className="text-sm font-medium">CID Ideal (manual)</Label>
+        <Label className="text-sm font-medium">
+          {hasCIDs ? "CID Ideal (manual)" : "CID Ideal (obrigatório)"}
+        </Label>
         <Input
           className="mt-1 font-mono text-sm"
           placeholder="Ex: G43.0 – Migrânea sem aura"

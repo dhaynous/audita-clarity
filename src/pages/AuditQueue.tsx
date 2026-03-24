@@ -221,16 +221,24 @@ export default function AuditQueue() {
       </header>
 
       <div className="max-w-[1800px] mx-auto p-6 space-y-4">
-        {/* Filters */}
-        <AuditFilters
-          filters={filters}
-          onFiltersChange={setFilters}
-          especialidades={especialidades}
-          unidades={unidades}
-          setores={setores}
-          medicos={medicos}
-          statusLabels={STATUS_LABELS}
-        />
+        {/* Filters + Export */}
+        <div className="flex items-start gap-3">
+          <div className="flex-1">
+            <AuditFilters
+              filters={filters}
+              onFiltersChange={setFilters}
+              especialidades={especialidades}
+              unidades={unidades}
+              setores={setores}
+              medicos={medicos}
+              statusLabels={STATUS_LABELS}
+            />
+          </div>
+          <Button variant="outline" size="sm" className="h-9 gap-1.5 mt-[1px] shrink-0" onClick={handleExportExcel}>
+            <Download className="h-4 w-4" />
+            Exportar Excel
+          </Button>
+        </div>
 
         {/* Tabs */}
         <Tabs defaultValue="pendentes">

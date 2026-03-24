@@ -13,8 +13,9 @@ import {
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Clock, User, Stethoscope, Building2, CalendarDays, ArrowRight, ShieldAlert, Lock,
+  Clock, User, Stethoscope, Building2, CalendarDays, ArrowRight, ShieldAlert, Lock, Download,
 } from "lucide-react";
+import * as XLSX from "xlsx";
 import hapvidaLogo from "@/assets/hapvida-logo.png";
 import AuditFilters, { type AuditFiltersState, initialFilters } from "@/components/audit/AuditFilters";
 

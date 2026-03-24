@@ -152,6 +152,38 @@ export default function AuditQueue() {
     navigate(`/auditoria/${id}`);
   };
 
+  const handleExportExcel = () => {
+    const allFiltered = [...pendentes, ...emRevisao, ...concluidas];
+    const data = allFiltered.map((c) => ({
+      "ID": c.id,
+      "Carteirinha": c.carteirinha,
+      "Paciente": c.paciente,
+      "Tipo": TIPO_LABELS[c.tipo],
+      "Especialidade": c.especialidade,
+      "Médico": c.medico,
+      "Unidade": c.unidade || "—",
+      "Setor": c.setor || "—",
+      "Regional": c.regional,
+      "Data": new Date(c.data + "T12:00:00").toLocaleDateString("pt-BR"),
+      "Horário": c.horario,
+      "Duração": c.duracao,
+      "Status": STATUS_LABELS[c.status],
+      "Protocolo": c.protocolo || "—",
+      "Motivo Revisão": c.motivoRevisao || "—",
+      "Auditor": c.auditor || "—",
+      "Data Auditoria": c.dataAuditoria ? new Date(c.dataAuditoria + "T12:00:00").toLocaleDateString("pt-BR") : "—",
+    }));
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Atendimentos");
+    // Auto-size columns
+    const colWidths = Object.keys(data[0] || {}).map((key) => ({
+      wch: Math.max(key.length, ...data.map((r) => String(r[key as keyof typeof r]).length)) + 2,
+    }));
+    ws["!cols"] = colWidths;
+    XLSX.writeFile(wb, `auditoria_${new Date().toISOString().slice(0, 10)}.xlsx`);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Top bar */}

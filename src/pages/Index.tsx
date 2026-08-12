@@ -183,7 +183,7 @@ export default function Index() {
               onSelectBest={setBestCID}
               manualCID={manualCID}
               onManualCIDChange={setManualCID}
-              disabled={isFinalized}
+              disabled={isFinalized || isAudioNotAuditable}
               visible={showCIDBlock}
             />
           </div>

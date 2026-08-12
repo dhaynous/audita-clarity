@@ -51,6 +51,9 @@ export default function Index() {
     ? "pa" : "eletivo";
   const showCIDBlock = tipoAtendimento !== "pa";
 
+  // Quando o áudio é avaliado como "Não", o atendimento é encaminhado diretamente a Não Auditável
+  const isAudioNotAuditable = consulta === "nao";
+
   const toggleCID = (idx: number, val: boolean) => {
     setCids(cids.map((c, i) => (i === idx ? { ...c, correct: val } : c)));
   };
@@ -86,6 +89,17 @@ export default function Index() {
     setIsFinalized(true);
     setStatus("finalizada");
     toast.success("Auditoria finalizada com sucesso.");
+  };
+
+  const handleNotAuditable = () => {
+    if (isAudioNotAuditable && consultaJust.length < 15) {
+      toast.error("Justificativa obrigatória com no mínimo 15 caracteres.");
+      return;
+    }
+    setStatusJustificativa(consultaJust);
+    setIsFinalized(true);
+    setStatus("nao_auditavel");
+    toast.success("Atendimento marcado como Não Auditável.");
   };
 
   const handleReportError = () => {
@@ -146,7 +160,7 @@ export default function Index() {
               onChange={setOutputIA}
               justification={outputIAJust}
               onJustificationChange={setOutputIAJust}
-              disabled={isFinalized}
+              disabled={isFinalized || isAudioNotAuditable}
             />
             <EvaluationBlock
               title="Anamnese Médica Final"
@@ -155,7 +169,7 @@ export default function Index() {
               onChange={setAnamneseFinal}
               justification={anamneseFinalJust}
               onJustificationChange={setAnamneseFinalJust}
-              disabled={isFinalized}
+              disabled={isFinalized || isAudioNotAuditable}
             />
           </div>
 
@@ -169,7 +183,7 @@ export default function Index() {
               onSelectBest={setBestCID}
               manualCID={manualCID}
               onManualCIDChange={setManualCID}
-              disabled={isFinalized}
+              disabled={isFinalized || isAudioNotAuditable}
               visible={showCIDBlock}
             />
           </div>
@@ -182,7 +196,7 @@ export default function Index() {
               onHasChange={setHasHallucination}
               selectedTypes={hallucinationTypes}
               onTypesChange={setHallucinationTypes}
-              disabled={isFinalized}
+              disabled={isFinalized || isAudioNotAuditable}
             />
           </div>
         </div>
@@ -193,7 +207,9 @@ export default function Index() {
         onSaveDraft={handleSaveDraft}
         onFinalize={handleFinalize}
         onReportError={handleReportError}
+        onNotAuditable={handleNotAuditable}
         isFinalized={isFinalized}
+        isNotAuditableMode={isAudioNotAuditable}
       />
     </div>
   );

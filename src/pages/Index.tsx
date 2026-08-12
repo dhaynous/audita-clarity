@@ -160,7 +160,7 @@ export default function Index() {
               onChange={setOutputIA}
               justification={outputIAJust}
               onJustificationChange={setOutputIAJust}
-              disabled={isFinalized}
+              disabled={isFinalized || isAudioNotAuditable}
             />
             <EvaluationBlock
               title="Anamnese Médica Final"
@@ -169,7 +169,7 @@ export default function Index() {
               onChange={setAnamneseFinal}
               justification={anamneseFinalJust}
               onJustificationChange={setAnamneseFinalJust}
-              disabled={isFinalized}
+              disabled={isFinalized || isAudioNotAuditable}
             />
           </div>
 

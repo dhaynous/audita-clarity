@@ -91,6 +91,17 @@ export default function Index() {
     toast.success("Auditoria finalizada com sucesso.");
   };
 
+  const handleNotAuditable = () => {
+    if (isAudioNotAuditable && consultaJust.length < 15) {
+      toast.error("Justificativa obrigatória com no mínimo 15 caracteres.");
+      return;
+    }
+    setStatusJustificativa(consultaJust);
+    setIsFinalized(true);
+    setStatus("nao_auditavel");
+    toast.success("Atendimento marcado como Não Auditável.");
+  };
+
   const handleReportError = () => {
     toast.info("Funcionalidade de reporte de erro será implementada com o backend.");
   };

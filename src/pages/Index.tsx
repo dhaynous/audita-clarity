@@ -196,7 +196,7 @@ export default function Index() {
               onHasChange={setHasHallucination}
               selectedTypes={hallucinationTypes}
               onTypesChange={setHallucinationTypes}
-              disabled={isFinalized}
+              disabled={isFinalized || isAudioNotAuditable}
             />
           </div>
         </div>

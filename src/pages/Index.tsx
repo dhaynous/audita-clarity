@@ -188,7 +188,29 @@ export default function Index() {
 
         {/* Right column – Evaluation */}
         <div className="w-1/2 space-y-4">
+          {isConcluida && (
+            <AuditSummary
+              status={status as "finalizada" | "nao_auditavel"}
+              auditor={concluida?.auditor}
+              dataAuditoria={concluida?.dataAuditoria}
+              horarioAuditoria={concluida?.horarioAuditoria}
+              items={[
+                { title: "Consulta", value: consulta, justification: consultaJust },
+                { title: "Output da IA", value: outputIA, justification: outputIAJust },
+                { title: "Anamnese Médica Final", value: anamneseFinal, justification: anamneseFinalJust },
+              ]}
+              cids={cids}
+              bestCID={bestCID}
+              manualCID={manualCID}
+              showCIDs={showCIDBlock && status === "finalizada"}
+              hasHallucination={hasHallucination}
+              hallucinationTypes={hallucinationTypes}
+              motivoRevisao={motivoRevisao}
+              statusJustificativa={statusJustificativa}
+            />
+          )}
           {/* Block 3 */}
+
           <div className="space-y-3">
             <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Bloco 3 – Avaliação</h3>
             <EvaluationBlock

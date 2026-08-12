@@ -207,7 +207,9 @@ export default function Index() {
         onSaveDraft={handleSaveDraft}
         onFinalize={handleFinalize}
         onReportError={handleReportError}
+        onNotAuditable={handleNotAuditable}
         isFinalized={isFinalized}
+        isNotAuditableMode={isAudioNotAuditable}
       />
     </div>
   );

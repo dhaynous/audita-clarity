@@ -51,6 +51,9 @@ export default function Index() {
     ? "pa" : "eletivo";
   const showCIDBlock = tipoAtendimento !== "pa";
 
+  // Quando o áudio é avaliado como "Não", o atendimento é encaminhado diretamente a Não Auditável
+  const isAudioNotAuditable = consulta === "nao";
+
   const toggleCID = (idx: number, val: boolean) => {
     setCids(cids.map((c, i) => (i === idx ? { ...c, correct: val } : c)));
   };
